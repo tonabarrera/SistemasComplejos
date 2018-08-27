@@ -1,68 +1,82 @@
 \section{Desarrollo}
-	El desarrollo de la práctica consistió en lo siguiente:
-	\paragraph{Clases AFD y AFN}
-	Ambas clases heredan de un clase padre llamada \textit{Automata}, la cual define los elementos que todo autómata debe tener (Alfabeto, Estados, Función de Transición, Estado Inicial y Estados Finales) y define algunos métodos para que cada tipo de autómata implemente (calcularEstado y validarCadena).\\
-	El código de esta clase padre (automata.py) es el siguiente:
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=12cm]{img/automata.png}
-			\caption{automata.py}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}	
-	A continuación se muestra el código de la clase AFD la cual actúa como un autómata finito determinista heredando de la clase autómata:\\
-	%\lstinputlisting[language=Python, caption=Automata.py]{../afd.py}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=15cm]{img/afd_1.png}
-			\caption{afd.py (1)}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=15cm]{img/afd_2.png}
-			\caption{afd.py (2)}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}
-	A continuación se muestra el código de la clase AFND la cual actúa como un autómata finito no determinista (el cual permite las transiciones epsilon), al igual que la clase anterior, hereda de la clase autómata:\\
-	\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=15cm, height=15cm]{img/afnd_1.png}
-		\caption{afnd.py (1)}
-		\label{fig:tablas}
-	\end{center}
-	\end{figure}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=15cm]{img/afnd_2.png}
-			\caption{afnd.py (2)}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=15cm]{img/afnd_3.png}
-			\caption{afnd.py (3)}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}
-	\newpage
-	\paragraph{Archivos auxiliares}
-	Como se mencionó anteriormente, la información necesaria para la creación de los autómatas es ingresada mediante un archivo el cual es ingresado al momento de ejecutar el programa. El archivo contiene un estructura como la que se indica a continuación:
-	\begin{enumerate}
-		\item Primer linea: El conjunto de estados del autómata, separados por comas.
-		\item Segunda linea: El alfabeto de entrada, igualmente cada símbolo separado por comas.
-		\item Tercer linea: función de transición de la siguiente manera: (estado,símbolo,estadoResultado) separadas por guiones.
-		\item Cuarta linea: Estado inicial.
-		\item Quinta linea: Estados finales o de aceptación separados por comas.
-	\end{enumerate}\\
-	Por ende, fue necesario la creación de una clase extra la cual se encargará de manejar el archivo para mandarle la información correspondiente al autómata. El código de este manejador (archivo.py) es el siguiente:
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=15cm, height=15cm]{img/archivo.png}
-			\caption{archivo.py}
-			\label{fig:tablas}
-		\end{center}
-	\end{figure}
+	Los temas abordados en cada una de las conferencias son los siguientes:
+	\paragraph{Primer Conferencia de Cibernética (1946, Marzo)}
+	\begin{itemize}
+		\item Redes neuronales simuladas emulando el cálculo de la lógica proposicional.
+		\item Antropología y como las computadoras podrían aprender a aprender.
+		\item Diferencias de percepción debido a daño cerebral.
+		\item Ética derivada de la ciencia.
+		\item Comportamiento repetitivo compulsivo
+	\end{itemize}
+	\paragraph{Segunda Conferencia de Cibernética (1946, Octubre)}
+	\begin{itemize}
+		\item Mecanismos teológicos en la sociedad.
+		\item Conceptos de la psicología Gestalt.
+		\item Comunicación mediante el tacto y químicos entre hormigas.
+	\end{itemize}
+	\paragraph{Tercera Conferencia de Cibernética (1947, Marzo)}
+	\begin{itemize}
+		\item Psicología de niños.
+	\end{itemize}
+	\paragraph{Cuarta Conferencia de Cibernética (1947, Octubre)}
+	\begin{itemize}
+		\item La perspectiva de la psicología.
+		\item Aproximaciones analógicas y digitales de modelos psicológicos.
+	\end{itemize}
+	\paragraph{Quinta Conferencia de Cibernética (1948, Marzo)}
+	\begin{itemize}
+		\item Formación de la I en el lenguaje.
+		\item Modelos formales aplicados al picoteo de los pollos.
+	\end{itemize}
+	\paragraph{Sexta Conferencia de Cibernética (1949, Marzo)}
+	\begin{itemize}
+		\item Memoria.
+		\item ¿Tenemos neuronas y conexiones suficientes para el total de las capacidades humanas?
+		\item Colaboración entre física y psicología.
+	\end{itemize}
+	\paragraph{Séptima Conferencia de Cibernética (1950, Marzo)}
+	\begin{itemize}
+		\item Interpretación analógica y digital de la mente.
+		\item Lenguaje y teoría de la información.
+		\item Lenguaje, símbolos y neurosis.
+		\item Comprensión de las comunicaciones verbales.
+		\item Análisis formal de la redundancia semántica en el inglés impreso.
+	\end{itemize}
+	\paragraph{Octava Conferencia de Cibernética (1951, Marzo)}
+	\begin{itemize}
+		\item Información como semántica.
+		\item ¿Los autómatas pueden adaptarse a la lógica deductiva?
+		\item Teoría de decisiones.
+		\item Dinámica de grupos pequeños y comunicaciones de grupo.
+		\item La aplicabilidad de la teoría de juegos a las motivaciones físicas.
+		\item El tipo de lenguaje necesario para analizar el lenguaje.
+		\item Comportamiento puro vs comunicación verdadera.
+		\item ¿La psiquiatría es una ciencia?
+		\item ¿Puede un evento mental que crear memoria ser inconsciente?
+	\end{itemize}
+	\paragraph{Novena Conferencia de Cibernética (1952, Marzo)}
+	\begin{itemize}
+		\item La relación de la neuropsicología con la resolución de problemas en la filosofía y epistemología.
+		\item La relación de la Cibernética a un micro nivel con la biomedicina y los procesos celulares.
+		\item La complejidad de los organismos con una función de la información.
+		\item Humor, comunicaciones y paradojas.
+		\item ¿Los autómatas ajedrecisticos necesitan ser aleatorios para poder vencer a los humanos?
+		\item Homeostasis y aprendizaje.
+	\end{itemize}
+	\paragraph{Décima Conferencia de Cibernética (1953, Marzo)}
+	\begin{itemize}
+		\item Estudios de la actividad en el cerebro.
+		\item Información semántica y sus medidas.
+		\item Significado en el lenguaje y como es este adquirido.
+		\item Como los mecanismos neuronales puede reconocer formas y acordes musicales.
+	\end{itemize}
+
+
+
+	% \begin{figure}[H]
+	% 	\begin{center}
+	% 		\includegraphics[width=15cm, height=12cm]{img/automata.png}
+	% 		\caption{automata.py}
+	% 		\label{fig:tablas}
+	% 	\end{center}
+	% \end{figure}
