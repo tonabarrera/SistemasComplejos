@@ -1,0 +1,4 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Desarrollo}{3}
+\contentsline {paragraph}{UACM - Maestr\IeC {\'\i }a en Ciencia de la Complejidad}{3}
+\contentsline {section}{Referencias}{3}
