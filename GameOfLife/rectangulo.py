@@ -3,6 +3,9 @@ from numpy import random
 from time import sleep
 # import matplotlib.pyplot as plt
 
+reglas=[2,3,3,3]
+tam=0
+
 master = Tk()
 master.title("Game of Life")
 
@@ -10,7 +13,7 @@ numero_vivos=0
 numero_muertos=0
 generacion=0
 
-continuar=True
+continuar=False
 
 canvas = Canvas(master, width=1280, height=800, scrollregion=(0,0,1500,1200))
 label_vivos=Label(master, font='Helvetica 10')
@@ -53,8 +56,29 @@ def cambiar(event):
 		numero_muertos-=1
 		actualizarLabels()
 
-array=[[0] * 1000 for i in range(1000)]
-valores=[[0] * 1000 for i in range(1000)]
+def evaluar(obj,i,j):
+	vecindad=[]
+	if i==0:
+		vecindad.append(int(canvas.gettags(array[3-1][j])[0]))#superior
+		vecindad.append(int(canvas.gettags(array[i+1][j])[0]))#inferior
+		if j==0:
+			vecindad.append(int(canvas.gettags(array[3-1][3-1])[0]))#superior izquierdo
+			vecindad.append(int(canvas.gettags(array[3-1][j+1])[0]))#superior derecho
+			vecindad.append(int(canvas.gettags(array[i][3-1])[0]))#izquierdo
+			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
+			vecindad.append(int(canvas.gettags(array[i+1][3-1])[0]))#inferior izquierdo
+			vecindad.append(int(canvas.gettags(array[i+1][j+1])[0]))#inferior derecho
+		elif j==tam-1:
+			pass
+
+
+
+
+
+
+
+array=[[0] * tam for i in range(tam)]
+valores=[[0] * tam for i in range(tam)]
 
 for i in range(3):
 	for j in range(3):
@@ -74,7 +98,7 @@ label_vivos.configure(text="Número de vivos: "+str(numero_vivos))
 label_vivos.place(x=20, y=40)
 label_muertos.configure(text="Número de muertos: "+str(numero_muertos))
 label_muertos.place(x=20, y=60)
-boton_pausa=Button(master,text="Pausar",command=pausa)
+boton_pausa=Button(master,text="Empezar",command=pausa)
 boton_pausa.place(x=30, y=100)
 
 info = open("historico_unos.txt", "w")
@@ -91,9 +115,11 @@ canvas.pack()
 while True:
 	master.update_idletasks()
 	master.update()
-	# sleep(4)
+	sleep(2)
 	if continuar:
-
+		for i in range(3):
+			for j in range(3):
+				evaluar(array[i][j],i,j)
 		print("Estoy corriendo")
 	else:
 		print("Estoy en pausa")
