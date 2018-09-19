@@ -3,7 +3,6 @@ from numpy import random
 from time import sleep
 from sys import argv
 from tkinter.colorchooser import *
-# import matplotlib.pyplot as plt
 
 reglas=[2,3,3,3]
 tam=int(argv[2])
@@ -204,8 +203,6 @@ for i in range(tam):
 			canvas.itemconfigure(array[i][j], fill=color_muerto, width=0, tags=str(valores[i][j]))#Rojo
 			numero_muertos+=1
 		canvas.tag_bind(array[i][j], '<Button-1>', cambiar)
-		# array[i][j].bind('<Button-1>', cambiar)
-
 
 label_vivos.configure(text="Número de vivos: "+str(numero_vivos))
 label_vivos.place(x=20, y=40)
@@ -238,8 +235,6 @@ info.flush()
 # canvas.pack(side=LEFT,expand=True,fill=BOTH)
 canvas.pack()
 # master.mainloop()
-# threads = list()
-# array2=deepcopy(array)
 
 
 while True:
@@ -253,10 +248,6 @@ while True:
 		for i in range(tam):
 			for j in range(tam):
 				evaluar(por_modificar,i,j)
-				# t = threading.Thread(target=evaluar, args=(i,j))
-				# threads.append(t)
-				# t.start()
-		# print("Estoy corriendo")
 		for i in por_modificar:
 			if int(canvas.gettags(i)[0])==1:
 				canvas.itemconfig(i, fill=color_muerto,tags='0')
@@ -265,11 +256,8 @@ while True:
 		actualizarLabels()
 		info.write(str(numero_vivos)+","+str(generacion)+"\n")
 		info.flush()
-		# array2=deepcopy(array)
 	else:
-		# array2=deepcopy(array)
 		pass
-		# print("Estoy en pausa")
 
 
 
