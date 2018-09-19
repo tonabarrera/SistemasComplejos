@@ -16,9 +16,9 @@ def animacion(i):
 			y,x = linea.split(",")
 			xs.append(int(x))
 			ys.append(int(y))
-	print(ys)
+	# print(ys)
 	grafica.clear()
-	grafica.set_xlabel('Generacion')
+	grafica.set_xlabel('Generación')
 	grafica.set_ylabel('Cantidad de unos')
 	grafica.plot(xs, ys)
 
