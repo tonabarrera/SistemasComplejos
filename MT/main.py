@@ -45,6 +45,7 @@ while not maquina.esFinal():
 	print("-------------------")
 
 	archivo.write("Siguiente estado: "+str(maquina.estado_actual))
+	archivo.write("\n")
 	archivo.write("-----------------")
 	archivo.write("\n")
 
@@ -59,4 +60,5 @@ while not maquina.esFinal():
 
 print("Resultado: "+"".join(maquina.cadena))
 archivo.write("Resultado: "+"".join(maquina.cadena)+"\n")
+archivo.flush()
 master.mainloop()
