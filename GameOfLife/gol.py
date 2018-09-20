@@ -226,16 +226,13 @@ boton_color_muerto.place(x=20,y=430)
 label_color_muertos.place(x=150,y=435)
 
 info = open("historico_unos.txt", "w")
-
 info.write(str(numero_vivos)+","+str(generacion)+"\n")
 info.flush()
-
 
 # canvas.config(xscrollcommand=hbar.set)
 # canvas.pack(side=LEFT,expand=True,fill=BOTH)
 canvas.pack()
 # master.mainloop()
-
 
 while True:
 	master.update_idletasks()
@@ -258,7 +255,3 @@ while True:
 		info.flush()
 	else:
 		pass
-
-
-
-
