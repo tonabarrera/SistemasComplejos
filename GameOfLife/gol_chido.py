@@ -203,7 +203,7 @@ for i in range(tam):
 		else:
 			canvas.itemconfigure(array[i][j], fill=color_muerto, width=0, tags=str(valores[i][j]))#Rojo
 			numero_muertos+=1
-		canvas.tag_bind(array[i][j], '<Button-1>', cambiar)
+		#canvas.tag_bind(array[i][j], '<Button-1>', cambiar)
 
 label_vivos.configure(text="Número de vivos: "+str(numero_vivos))
 label_vivos.place(x=20, y=40)

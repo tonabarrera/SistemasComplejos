@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730) (preloaded format=pdflatex 2018.9.19)  21 SEP 2018 18:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730) (preloaded format=pdflatex 2018.9.19)  21 SEP 2018 09:59
 entering extended mode
 **./reporte.tex
 (reporte.tex
@@ -285,103 +285,32 @@ LaTeX Info: Redefining \% on input line 1.
 \openout3 = `reporte.toc'.
 
  [2]
-(introduccion.tex) [3] (desarrollo.tex
-<img/maquina.png, id=14, 963.6pt x 542.025pt>
-File: img/maquina.png Graphic file (type png)
-<use img/maquina.png>
-Package pdftex.def Info: img/maquina.png  used on input line 6.
-(pdftex.def)             Requested size: 385.43317pt x 216.80615pt.
-
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/lat
-ex/listings/lstlang1.sty"
-File: lstlang1.sty 2018/09/02 1.7 listings language file
-)
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/lat
-ex/base/latin1.def"
-File: latin1.def 2018/04/06 v1.3b Input encoding file
-)
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/gen
-eric/oberdiek/se-utf8.def"
-File: se-utf8.def 2016/05/16 v1.11 stringenc: UTF-8
-)
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/gen
-eric/oberdiek/se-iso-8859-1.def"
-File: se-iso-8859-1.def 2016/05/16 v1.11 stringenc: ISO-8859-1
-) [4 <./img/maquina.png>]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 14.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 14.
-
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/lat
-ex/base/omlcmr.fd"
-File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 14.
-
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/lat
-ex/base/latin1.def"
-File: latin1.def 2018/04/06 v1.3b Input encoding file
-)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 1.
-
-("/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/tex/lat
-ex/base/omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
- [5] [6]) [7] (resultados.tex
-<img/prueba1.png, id=32, 395.4775pt x 338.26375pt>
-File: img/prueba1.png Graphic file (type png)
-<use img/prueba1.png>
-Package pdftex.def Info: img/prueba1.png  used on input line 6.
-(pdftex.def)             Requested size: 237.28833pt x 202.95981pt.
-<img/prueba2.png, id=34, 342.27875pt x 573.14125pt>
-File: img/prueba2.png Graphic file (type png)
-<use img/prueba2.png>
-Package pdftex.def Info: img/prueba2.png  used on input line 13.
-(pdftex.def)             Requested size: 205.36882pt x 343.8874pt.
-<img/prueba3.png, id=35, 371.3875pt x 289.08pt>
-File: img/prueba3.png Graphic file (type png)
-<use img/prueba3.png>
-Package pdftex.def Info: img/prueba3.png  used on input line 20.
-(pdftex.def)             Requested size: 222.83421pt x 173.44933pt.
- [8 <./img/prueba1.png>]
-<img/prueba4.png, id=40, 395.4775pt x 291.0875pt>
-File: img/prueba4.png Graphic file (type png)
-<use img/prueba4.png>
-Package pdftex.def Info: img/prueba4.png  used on input line 27.
-(pdftex.def)             Requested size: 237.28833pt x 174.65384pt.
-
-[9 <./img/prueba2.png>]) (reporte.bbl) [10 <./img/prueba3.png> <./img/prueba4.p
-ng>] (reporte.aux
+(desarrollo.tex
+<img/grafica.png, id=11, 766.865pt x 700.6175pt>
+File: img/grafica.png Graphic file (type png)
+<use img/grafica.png>
+Package pdftex.def Info: img/grafica.png  used on input line 6.
+(pdftex.def)             Requested size: 383.43156pt x 350.30789pt.
+) [3 <./img/grafica.png>] (reporte.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 4775 strings out of 492973
- 70105 string characters out of 3117369
- 493828 words of memory out of 3000000
- 8557 multiletter control sequences out of 15000+200000
- 6711 words of font info for 24 fonts, out of 3000000 for 9000
+ 4171 strings out of 492973
+ 62850 string characters out of 3117369
+ 134170 words of memory out of 3000000
+ 7992 multiletter control sequences out of 15000+200000
+ 6063 words of font info for 22 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,8n,43p,537b,2206s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,7n,34p,368b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
 </Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/fonts
 /type1/public/amsfonts/cm/cmbx12.pfb></Users/eliothmonroy/Library/Application S
-upport/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/
-eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></Users/eliothmonroy/Library/Application Support/MiKTe
-X/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/eliothmonroy/
-Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/c
-m/cmr17.pfb></Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/inst
-all/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/eliothmonroy/Library/Applic
-ation Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-/Users/eliothmonroy/Library/Application Support/MiKTeX/texmfs/install/fonts/typ
-e1/public/amsfonts/cm/cmti12.pfb>
-Output written on reporte.pdf (10 pages, 308712 bytes).
+upport/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/e
+liothmonroy/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/publi
+c/amsfonts/cm/cmr17.pfb>
+Output written on reporte.pdf (3 pages, 139209 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
+ 27 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
