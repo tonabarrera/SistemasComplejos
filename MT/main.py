@@ -54,9 +54,9 @@ while not maquina.esFinal():
 	c.itemconfigure(texto, text="".join(maquina.cadena))
 	c.itemconfigure(estado, text=str(maquina.estado_actual))
 	if maquina.direccion == 'R':
-		c.move(flecha, 9, 0)
+		c.move(flecha, 10, 0)
 	else:
-		c.move(flecha, -9, 0)
+		c.move(flecha, -10, 0)
 
 print("Resultado: "+"".join(maquina.cadena))
 archivo.write("Resultado: "+"".join(maquina.cadena)+"\n")
