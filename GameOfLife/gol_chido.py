@@ -1,5 +1,5 @@
 from tkinter import *
-from numpy import random
+from numpy import random, where, matrix, zeros, copy
 from time import sleep
 from sys import argv
 from tkinter.colorchooser import *
@@ -46,18 +46,20 @@ def actualizarLabels():
 def cambiar(event):
 	print("Me estas presionando: ")
 	obj=event.widget.find_closest(event.x, event.y)
-	tag=int(canvas.gettags(obj)[0])
+	x,y=where(array == obj)
+	tag=valores[x[0]][y[0]]
 	global numero_vivos
 	global numero_muertos
-	print(tag)
 	if tag==1:#Si esta vivo entonces lo matamos
-		canvas.itemconfig(obj, fill=color_muerto,tags='0')
+		canvas.itemconfig(obj, fill=color_muerto)
+		valores[x[0]][y[0]]=0
 		print("Aumentaron muertos")
 		numero_vivos-=1
 		numero_muertos+=1
 		actualizarLabels()
 	else:#Si esta muerto entonces vive
-		canvas.itemconfig(obj, fill=color_vivo,tags='1')
+		canvas.itemconfig(obj, fill=color_vivo)
+		valores[x[0]][y[0]]=1
 		print("Aumentaron vivos")
 		numero_vivos+=1
 		numero_muertos-=1
@@ -78,89 +80,90 @@ def cambiar_color_muerto():
 def actualizarColor():
 	for i in range(tam):
 		for j in range(tam):
-			if int(canvas.gettags(array[i][j])[0])==1:
+			if valores[i][j]==1:
 				canvas.itemconfigure(array[i][j], fill=color_vivo)
 			else:
 				canvas.itemconfigure(array[i][j], fill=color_muerto)
 
 
-def evaluar(por_modificar,i,j):
+def evaluar(i,j):
 	global numero_vivos
 	global numero_muertos
+	global valores
 	vecindad=[]
-	estado=int(canvas.gettags(array[i][j])[0])
+	estado=valores2[i][j]
 	if i==0:
-		vecindad.append(int(canvas.gettags(array[tam-1][j])[0]))#superior
-		vecindad.append(int(canvas.gettags(array[i+1][j])[0]))#inferior
+		vecindad.append(valores2[tam-1][j])#superior
+		vecindad.append(valores2[i+1][j])#inferior
 		if j==0:
-			vecindad.append(int(canvas.gettags(array[tam-1][tam-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[tam-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][tam-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][tam-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[tam-1][tam-1])#superior izquierdo
+			vecindad.append(valores2[tam-1][j+1])#superior derecho
+			vecindad.append(valores2[i][tam-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[i+1][tam-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][j+1])#inferior derecho
 		elif j==tam-1:
-			vecindad.append(int(canvas.gettags(array[tam-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[tam-1][0])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][0])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][0])[0]))#inferior derecho
+			vecindad.append(valores2[tam-1][j-1])#superior izquierdo
+			vecindad.append(valores2[tam-1][0])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][0])#derecho
+			vecindad.append(valores2[i+1][j-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][0])#inferior derecho
 		else:
-			vecindad.append(int(canvas.gettags(array[tam-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[tam-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[tam-1][j-1])#superior izquierdo
+			vecindad.append(valores2[tam-1][j+1])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[i+1][j-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][j+1])#inferior derecho
 	elif i==tam-1:
-		vecindad.append(int(canvas.gettags(array[i-1][j])[0]))#superior
-		vecindad.append(int(canvas.gettags(array[0][j])[0]))#inferior
+		vecindad.append(valores2[i-1][j])#superior
+		vecindad.append(valores2[0][j])#inferior
 		if j==0:
-			vecindad.append(int(canvas.gettags(array[i-1][tam-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][tam-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[0][tam-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[0][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][tam-1])#superior izquierdo
+			vecindad.append(valores2[i-1][j+1])#superior derecho
+			vecindad.append(valores2[i][tam-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[0][tam-1])#inferior izquierdo
+			vecindad.append(valores2[0][j+1])#inferior derecho
 		elif j==tam-1:
-			vecindad.append(int(canvas.gettags(array[i-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][0])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][0])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[0][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[0][0])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][j-1])#superior izquierdo
+			vecindad.append(valores2[i-1][0])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][0])#derecho
+			vecindad.append(valores2[0][j-1])#inferior izquierdo
+			vecindad.append(valores2[0][0])#inferior derecho
 		else:
-			vecindad.append(int(canvas.gettags(array[i-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[0][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[0][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][j-1])#superior izquierdo
+			vecindad.append(valores2[i-1][j+1])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[0][j-1])#inferior izquierdo
+			vecindad.append(valores2[0][j+1])#inferior derecho
 	else:
-		vecindad.append(int(canvas.gettags(array[i-1][j])[0]))#superior
-		vecindad.append(int(canvas.gettags(array[i+1][j])[0]))#inferior
+		vecindad.append(valores2[i-1][j])#superior
+		vecindad.append(valores2[i+1][j])#inferior
 		if j==0:
-			vecindad.append(int(canvas.gettags(array[i-1][tam-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][tam-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][tam-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][tam-1])#superior izquierdo
+			vecindad.append(valores2[i-1][j+1])#superior derecho
+			vecindad.append(valores2[i][tam-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[i+1][tam-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][j+1])#inferior derecho
 		elif j==tam-1:
-			vecindad.append(int(canvas.gettags(array[i-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][0])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][0])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][0])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][j-1])#superior izquierdo
+			vecindad.append(valores2[i-1][0])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][0])#derecho
+			vecindad.append(valores2[i+1][j-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][0])#inferior derecho
 		else:
-			vecindad.append(int(canvas.gettags(array[i-1][j-1])[0]))#superior izquierdo
-			vecindad.append(int(canvas.gettags(array[i-1][j+1])[0]))#superior derecho
-			vecindad.append(int(canvas.gettags(array[i][j-1])[0]))#izquierdo
-			vecindad.append(int(canvas.gettags(array[i][j+1])[0]))#derecho
-			vecindad.append(int(canvas.gettags(array[i+1][j-1])[0]))#inferior izquierdo
-			vecindad.append(int(canvas.gettags(array[i+1][j+1])[0]))#inferior derecho
+			vecindad.append(valores2[i-1][j-1])#superior izquierdo
+			vecindad.append(valores2[i-1][j+1])#superior derecho
+			vecindad.append(valores2[i][j-1])#izquierdo
+			vecindad.append(valores2[i][j+1])#derecho
+			vecindad.append(valores2[i+1][j-1])#inferior izquierdo
+			vecindad.append(valores2[i+1][j+1])#inferior derecho
 	cantidad_vivos=vecindad.count(1)
 	cantidad_muertos=vecindad.count(0)
 	# print("Soy:"+str(i)+str(j))
@@ -168,40 +171,35 @@ def evaluar(por_modificar,i,j):
 	# print("Muertos vecindad: "+str(cantidad_muertos))
 	if estado==1:#Esta vivo
 		# print("Esta vivo")
-		if cantidad_vivos in range(reglas[0],reglas[1]+1):
-			pass
-			#Sigue vivo
-			# print("Seguira vivo")
-		else:
-			# print("Murio")
-			por_modificar.append(array[i][j])
+		if cantidad_vivos not in range(reglas[0],reglas[1]+1):
+			canvas.itemconfigure(array[i][j], fill=color_muerto)
+			valores[i][j]=0
 			numero_vivos-=1
 			numero_muertos+=1
 	else:#Esta muerto
 		# print("Esta muerto")
 		if cantidad_vivos in range(reglas[2],reglas[3]+1):#Revive
 			# print("Revive")
-			por_modificar.append(array[i][j])
+			canvas.itemconfigure(array[i][j], fill=color_vivo)
+			valores[i][j]=1
 			numero_vivos+=1
 			numero_muertos-=1
-		else:
-			#Sigue muerto
-			pass
-			# print("Seguira muerto")
 
-array=[[0] * tam for i in range(tam)]
+# array_python=[[0] * tam for i in range(tam)]
+array=zeros(shape=(tam, tam), dtype=int)
 # valores=[[0] * tam for i in range(tam)]
 valores=random.choice([0,1], size=(tam,tam), p=[1-int(argv[1])/100,int(argv[1])/100])
-print(len(valores))
+
+valores2=copy(valores)
 
 for i in range(tam):
 	for j in range(tam):
 		array[i][j]=canvas.create_rectangle(200+(j*(650/tam)), 50+(i*(650/tam)), 200+(650/tam)+(j*(650/tam)), 50+(650/tam)+(i*(650/tam)))
 		if valores[i][j]==1:
-			canvas.itemconfigure(array[i][j], fill=color_vivo, width=0, tags=str(valores[i][j]))#Verde
+			canvas.itemconfigure(array[i][j], fill=color_vivo, width=0)#Verde
 			numero_vivos+=1
 		else:
-			canvas.itemconfigure(array[i][j], fill=color_muerto, width=0, tags=str(valores[i][j]))#Rojo
+			canvas.itemconfigure(array[i][j], fill=color_muerto, width=0)#Rojo
 			numero_muertos+=1
 		canvas.tag_bind(array[i][j], '<Button-1>', cambiar)
 
@@ -234,25 +232,21 @@ info.flush()
 # canvas.pack(side=LEFT,expand=True,fill=BOTH)
 canvas.pack()
 # master.mainloop()
+por_modificar=list()
 
 while True:
 	master.update_idletasks()
 	master.update()
-	sleep(.1)
-	por_modificar=list()
+	# sleep(.1)
 	if continuar:
 		reglas = list(map(int, input_reglas.get().split(",")))
 		generacion+=1
 		for i in range(tam):
 			for j in range(tam):
-				evaluar(por_modificar,i,j)
-		for i in por_modificar:
-			if int(canvas.gettags(i)[0])==1:
-				canvas.itemconfig(i, fill=color_muerto,tags='0')
-			else:
-				canvas.itemconfig(i, fill=color_vivo,tags='1')
+				evaluar(i,j)
 		actualizarLabels()
 		info.write(str(numero_vivos)+","+str(generacion)+"\n")
 		info.flush()
+		valores2=copy(valores)
 	else:
 		pass

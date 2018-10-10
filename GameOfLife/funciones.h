@@ -6,6 +6,7 @@
 	#include <math.h>
 	#include <string.h>
 	#include <time.h>
+	// #include <gtk/gtk.h>
 	//Metodos
 	int regla1, regla2, regla3, regla4;
 	int tam;
