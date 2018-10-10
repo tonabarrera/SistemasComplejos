@@ -182,7 +182,7 @@ def evaluar(i,j):
 		# print("Esta muerto")
 		if cantidad_vivos in range(reglas[2],reglas[3]+1):#Revive
 			# print("Revive")
-			# por_modificar.append(valores[i][j])
+			#por_modificar.append(valores[i][j])
 			valores[i][j]=1
 			numero_vivos+=1
 			numero_muertos-=1

@@ -23,7 +23,7 @@ def animacion(i):
 	# print(ys)
 	grafica.clear()
 	promedio=total/generacion
-	grafica.set_xlabel("Generación: "+str(generacion-1)+"\nPromedio: "+str(promedio)+"\nDensidad: "+str(promedio/10000))
+	grafica.set_xlabel("Generación: "+str(generacion-1)+"\nPromedio: "+str(promedio)+"\nDensidad: "+str(promedio/1000000))
 	grafica.set_ylabel('Cantidad de unos')
 	grafica.plot(xs, ys)
 
