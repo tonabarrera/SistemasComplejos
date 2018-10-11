@@ -1,6 +1,5 @@
 import java.util.concurrent.ThreadLocalRandom;
 import java.io.PrintWriter;
-import java.util.Arrays;
 public class Gol{
 	int regla1, regla2, regla3, regla4;
 	int tam;
