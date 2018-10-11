@@ -141,13 +141,13 @@ public class Gol{
 		}
 		//System.out.println("cantidad_vivos: "+cantidad_vivos+"\n");
 		if(estado==1){
-			if (!((cantidad_vivos >= regla1) & (cantidad_vivos <= regla2))){
+			if (!((cantidad_vivos >= regla1) && (cantidad_vivos <= regla2))){
 				array[i][j]=0;
 				numero_vivos--;
 				numero_muertos++;
 			}
 		}else{
-			if ((cantidad_vivos >= regla3) & (cantidad_vivos <= regla4)){
+			if ((cantidad_vivos >= regla3) && (cantidad_vivos <= regla4)){
 				array[i][j]=1;
 				numero_vivos++;
 				numero_muertos--;
