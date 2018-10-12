@@ -19,7 +19,7 @@ color_muerto="#ff0000"
 
 continuar=False
 
-canvas = Canvas(master, width=1280, height=800, scrollregion=(0,0,1500,1200))
+canvas = Canvas(master, width=1280, height=800)
 label_vivos=Label(master, font='Helvetica 10')
 label_muertos=Label(master, font='Helvetica 10')
 label_generacion=Label(master, font='Helvetica 10')
@@ -165,7 +165,7 @@ def evaluar(i,j):
 			vecindad.append(valores2[i+1][j-1])#inferior izquierdo
 			vecindad.append(valores2[i+1][j+1])#inferior derecho
 	cantidad_vivos=vecindad.count(1)
-	cantidad_muertos=vecindad.count(0)
+	# cantidad_muertos=vecindad.count(0)
 	# print("Soy:"+str(i)+str(j))
 	# print("Vivos vecindad: "+str(cantidad_vivos))
 	# print("Muertos vecindad: "+str(cantidad_muertos))
@@ -192,9 +192,11 @@ valores=random.choice([0,1], size=(tam,tam), p=[1-int(argv[1])/100,int(argv[1])/
 
 valores2=copy(valores)
 
+escala=650/tam
+
 for i in range(tam):
 	for j in range(tam):
-		array[i][j]=canvas.create_rectangle(200+(j*(650/tam)), 50+(i*(650/tam)), 200+(650/tam)+(j*(650/tam)), 50+(650/tam)+(i*(650/tam)))
+		array[i][j]=canvas.create_rectangle(200+(j*(escala)), 50+(i*(escala)), 200+(escala)+(j*(escala)), 50+(escala)+(i*(escala)))
 		if valores[i][j]==1:
 			canvas.itemconfigure(array[i][j], fill=color_vivo, width=0)#Verde
 			numero_vivos+=1
@@ -230,11 +232,11 @@ info.flush()
 
 # canvas.config(xscrollcommand=hbar.set)
 # canvas.pack(side=LEFT,expand=True,fill=BOTH)
-canvas.pack()
+# canvas.pack()
 # master.mainloop()
-por_modificar=list()
 
 while True:
+	canvas.pack()
 	master.update_idletasks()
 	master.update()
 	# sleep(.1)
