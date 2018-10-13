@@ -188,7 +188,8 @@ def evaluar(i,j):
 # array_python=[[0] * tam for i in range(tam)]
 array=zeros(shape=(tam, tam), dtype=int)
 # valores=[[0] * tam for i in range(tam)]
-valores=random.choice([0,1], size=(tam,tam), p=[1-int(argv[1])/100,int(argv[1])/100])
+probabilidad=int(argv[1])/100
+valores=random.choice([0,1], size=(tam,tam), p=[1-probabilidad,probabilidad])
 
 valores2=copy(valores)
 

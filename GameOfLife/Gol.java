@@ -26,7 +26,7 @@ public class Gol{
 	static PrintWriter pw;
 	public Gol(){
 		regla1=2; regla2=3; regla3=3; regla4=3;
-		tam=400;
+		tam=200;
 		proba=50;
 		numero_vivos=0;
 		numero_muertos=0;
@@ -36,7 +36,7 @@ public class Gol{
 		frame=new JFrame("Juego de la vida");
 		tam_frame=1200;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(0, 0, tam_frame, 700);
+		frame.setBounds(0, 0, tam_frame, 650);
 		label_generacion=new JLabel("Generación: "+generacion);
 		label_generacion.setBounds(20, 0, 150, 30);
 		frame.add(label_generacion);
@@ -46,7 +46,7 @@ public class Gol{
 		for(int i=0;i<tam;i++){
 			for(int j=0;j<tam;j++){
 				botones[i][j]=new JLabel("");
-				botones[i][j].setBounds(150+(j*(700/tam)),20+(i*(700/tam)),700/tam,700/tam);
+				botones[i][j].setBounds(150+(j*(650/tam)),20+(i*(650/tam)),650/tam,650/tam);
 				// botones[i][j].setBounds(100+(j*(650/tam)), 20+(i*(650/tam)), 100+(650/tam)+(j*(650/tam)), 20+(650/tam)+(i*(650/tam)));
 				int random=ThreadLocalRandom.current().nextInt(0, 2);
 				array[i][j]=(short)random;
