@@ -15,11 +15,11 @@ var vecindad=new Array(8);
 var intervalo;
 var log;
 
-
+//Función para descargar
 $('#descargar').on("click", function() {
 	function download() {
 	var fileContents = log;
-	var fileName = "data.txt";
+	var fileName = "log.txt";
 
 	var pp = document.createElement('a');
 	pp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContents));
@@ -30,23 +30,6 @@ $('#descargar').on("click", function() {
 	download()
 	}, 500);
 });
-
-
-var textFile = null,
-	makeTextFile = function (text) {
-	var data = new Blob([text], {type: 'text/plain'});
-
-	// If we are replacing a previously generated file we need to
-	// manually revoke the object URL to avoid memory leaks.
-	if (textFile !== null) {
-	  window.URL.revokeObjectURL(textFile);
-	}
-
-	textFile = window.URL.createObjectURL(data);
-
-	// returns a URL you can use as a href
-	return textFile;
-	};
 
 function Create2DArray(rows) {
 	var arr = new Array(rows);
