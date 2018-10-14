@@ -71,7 +71,6 @@ public class Gol{
 	public void copiarArrays(){
 		for(int i=0;i<tam;i++){
 			for(int j=0;j<tam;j++){
-				int random=ThreadLocalRandom.current().nextInt(0, 2);
 				array2[i][j]=array[i][j];
 			}
 		}
