@@ -1,6 +1,6 @@
 var c=document.getElementById("myCanvas");
 var longitud=680;
-var tam=1000;
+var tam=100;
 var escala=longitud/tam;
 var ctx=c.getContext("2d");
 var random;
@@ -12,6 +12,7 @@ var generacion=0;
 var numero_vivos=0;
 var numero_muertos=0;
 var vecindad=new Array(8);
+var intervalo;
 function Create2DArray(rows) {
 	var arr = new Array(rows);
 	for (var i=0;i<rows;i++) {
@@ -21,8 +22,6 @@ function Create2DArray(rows) {
 }
 var array=Create2DArray(tam);
 var array2=Create2DArray(tam);
-
-
 
 function evaluar(i,j){
 	var estado=array2[i][j];
@@ -177,7 +176,17 @@ function ejecutar(){
 		}
 	}
 	console.log(numero_vivos+","+generacion);
+	document.getElementById('generacion').innerHTML ="Generación: "+generacion;
 	array2=copiar(array);
 }
 
-setInterval(ejecutar, 800);
+function continuar(){
+	intervalo=setInterval(ejecutar, 1000);
+}
+
+function pausa(){
+	clearInterval(intervalo);
+}
+function siguiente(){
+	ejecutar();
+}
