@@ -1,6 +1,6 @@
 var c=document.getElementById("myCanvas");
 var longitud=680;
-var tam=100;
+var tam=1000;
 var escala=longitud/tam;
 var ctx=c.getContext("2d");
 var random;
@@ -16,20 +16,15 @@ var intervalo;
 var log;
 
 //Función para descargar
-$('#descargar').on("click", function() {
-	function download() {
+
+function descargar(){
 	var fileContents = log;
 	var fileName = "log.txt";
-
 	var pp = document.createElement('a');
 	pp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContents));
 	pp.setAttribute('download', fileName);
 	pp.click();
-	}
-	setTimeout(function() {
-	download()
-	}, 500);
-});
+}
 
 function Create2DArray(rows) {
 	var arr = new Array(rows);
@@ -204,7 +199,7 @@ function ejecutar(){
 }
 
 function continuar(){
-	intervalo=setInterval(ejecutar, 1000);
+	intervalo=setInterval(ejecutar, 500);
 }
 
 function pausa(){
