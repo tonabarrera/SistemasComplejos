@@ -13,6 +13,41 @@ var numero_vivos=0;
 var numero_muertos=0;
 var vecindad=new Array(8);
 var intervalo;
+var log;
+
+
+$('#descargar').on("click", function() {
+	function download() {
+	var fileContents = log;
+	var fileName = "data.txt";
+
+	var pp = document.createElement('a');
+	pp.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContents));
+	pp.setAttribute('download', fileName);
+	pp.click();
+	}
+	setTimeout(function() {
+	download()
+	}, 500);
+});
+
+
+var textFile = null,
+	makeTextFile = function (text) {
+	var data = new Blob([text], {type: 'text/plain'});
+
+	// If we are replacing a previously generated file we need to
+	// manually revoke the object URL to avoid memory leaks.
+	if (textFile !== null) {
+	  window.URL.revokeObjectURL(textFile);
+	}
+
+	textFile = window.URL.createObjectURL(data);
+
+	// returns a URL you can use as a href
+	return textFile;
+	};
+
 function Create2DArray(rows) {
 	var arr = new Array(rows);
 	for (var i=0;i<rows;i++) {
@@ -167,6 +202,9 @@ for (var i = 0; i < tam; i++) {
 }
 
 console.log(numero_vivos+","+generacion);
+log=numero_vivos+","+generacion+"\n";
+
+// document.getElementById('link').href = makeTextFile(generacion);
 
 function ejecutar(){
 	generacion++;
@@ -177,6 +215,8 @@ function ejecutar(){
 	}
 	console.log(numero_vivos+","+generacion);
 	document.getElementById('generacion').innerHTML ="Generación: "+generacion;
+	log+=numero_vivos+","+generacion+"\n";
+	// document.getElementById('link').href = makeTextFile(generacion);
 	array2=copiar(array);
 }
 
