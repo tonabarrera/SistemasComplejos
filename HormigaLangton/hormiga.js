@@ -1,6 +1,6 @@
 var c=document.getElementById("myCanvas");
 var longitud=680;
-var tam=1000;
+var tam=100;
 var escala=longitud/tam;
 var ctx=c.getContext("2d");
 var random;
@@ -9,11 +9,18 @@ var regla2=3;
 var regla3=3;
 var regla4=3;
 var generacion=0;
-var numero_vivos=0;
-var numero_muertos=0;
+var numero_blancos=0;
+var numero_negros=0;
+var numero_hormigas=0;
 var vecindad=new Array(8);
 var intervalo;
 var log;
+var array;
+var array2;
+var x;
+var y;
+var coordenadas;
+var hormigas;
 
 //Función para descargar
 
@@ -33,8 +40,11 @@ function Create2DArray(rows) {
 	}
 	return arr;
 }
-var array=Create2DArray(tam);
-var array2=Create2DArray(tam);
+
+array=Create2DArray(tam);
+array2=Create2DArray(tam);
+hormigas=Create2DArray(tam);
+coordenadas=Create2DArray(tam);
 
 function evaluar(i,j){
 	var estado=array2[i][j];
@@ -161,26 +171,35 @@ function copiar(array){
 	return aux;
 }
 
-for (var i = 0; i < tam; i++) {
-	for(var j=0;j<tam;j++){
-		random=Math.floor((Math.random() * 2) + 0);
-		array[i][j]=random;
-		array2[i][j]=random;
-		if (random==1) {
-			ctx.fillStyle="#66ff66";
-			numero_vivos++;
-		}else{
-			ctx.fillStyle="#FF0000";
-			numero_muertos++;
+function iniciar(){
+	for (var i = 0; i < tam; i++) {
+		for(var j=0;j<tam;j++){
+			// random=Math.floor((Math.random() * 2) + 0);
+			array[i][j]=random;
+			array2[i][j]=random;
+			ctx.fillStyle="#000000";
+			numero_negros++;
+			// if (random==1) {
+			// 	ctx.fillStyle="#66ff66";
+			// 	numero_vivos++;
+			// }else{
+			// 	ctx.fillStyle="#FF0000";
+			// 	numero_muertos++;
+			// }
+			x=0+j*escala;
+			y=0+i*escala;
+			coordenadas[i][j]=x+","+y+","+(x+escala)+","+(y+escala);
+			ctx.fillRect(x,y,escala,escala);
+			ctx.stroke();
 		}
-		ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
-		ctx.stroke();
+		// console.log("Ya hice: "+i);
 	}
-	// console.log("Ya hice: "+i);
 }
 
-console.log(numero_vivos+","+generacion);
-log=numero_vivos+","+generacion+"\n";
+iniciar();
+
+console.log(numero_negros+","+generacion);
+log=numero_negros+","+generacion+"\n";
 
 function ejecutar(){
 	generacion++;
@@ -189,9 +208,9 @@ function ejecutar(){
 			evaluar(i,j);
 		}
 	}
-	console.log(numero_vivos+","+generacion);
+	console.log(numero_negros+","+generacion);
 	document.getElementById('generacion').innerHTML ="Generación: "+generacion;
-	log+=numero_vivos+","+generacion+"\n";
+	log+=numero_negros+","+generacion+"\n";
 	array2=copiar(array);
 }
 
@@ -204,4 +223,24 @@ function pausa(){
 }
 function siguiente(){
 	ejecutar();
+}
+
+function obtenerCoordenadas(i,j){
+	var texto=coordenadas[i][j];
+	return texto.split(",");
+}
+
+function clickCanvas(event){
+	x=event.offsetX;
+	y=event.offsetY;
+	// console.log(x + "," +y);
+	for(var i=0;i<tam;i++){
+		for(var j=0;j<tam;j++){
+			var arr=obtenerCoordenadas(i,j);
+			if(x >= arr[0] && x <= arr[2] && y >= arr[1] && y <= arr[3]){
+				console.log("Soy:"+i+","+j);
+				break;
+			}
+		}
+	}
 }

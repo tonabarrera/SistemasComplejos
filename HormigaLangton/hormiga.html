@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Hormiga de Langton</title>
+		<link rel="stylesheet" type="text/css" href="estilos.css">
+	</head>
+	<body>
+		<div id="contenedor">
+			<!-- <canvas id="myCanvas" width="1260"  height="680" style="border:1px solid #000000;"> -->
+			<div >
+				<canvas onclick="clickCanvas(event)" id="myCanvas" width="680" height="680" style="border:1px solid #000000;">
+				</canvas>
+			</div>
+			<div id="">
+				<div id="botones">
+					<!-- <div> -->
+						<button onclick="continuar()">Continuar</button>
+						<button onclick="pausa()">Pausar</button>
+						<button onclick="siguiente()">Siguiente</button>
+					<!-- </div> -->
+				</div>
+				<div>
+					<label id="generacion">Generación: 0</label>
+				</div>
+				<div>
+					<button id="descargar" onclick="descargar()">Descargar log</button>
+				</div>
+			</div>
+		</div>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+	<script type="text/javascript" src="fabric.min.js"></script>
+	<script type="text/javascript" src="hormiga.js"></script>
+	</body>
+</html>
