@@ -239,6 +239,12 @@ function clickCanvas(event){
 			var arr=obtenerCoordenadas(i,j);
 			if(x >= arr[0] && x <= arr[2] && y >= arr[1] && y <= arr[3]){
 				console.log("Soy:"+i+","+j);
+				hormigas[i][j]=1;
+				x=0+j*escala;
+				y=0+i*escala;
+				ctx.fillStyle="#ff0000";
+				ctx.fillRect(x,y,escala,escala);
+				ctx.stroke();
 				break;
 			}
 		}
