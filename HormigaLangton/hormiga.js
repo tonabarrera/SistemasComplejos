@@ -1,7 +1,7 @@
 var c=document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
 var longitud=680;
-var tam=100;
+var tam=1000;
 var escala=longitud/tam;
 var random;
 var generacion=0;
@@ -19,7 +19,6 @@ var hormigas;
 var hormigas2;
 var direccion;
 var direccion2;
-var dir;
 //Direcciones:
 //0->norte, 1->este, 2->sur, 3->oeste
 
@@ -53,22 +52,31 @@ function evaluar(i,j){
 	var estado=array2[i][j];
 	if(hormigas2[i][j].length>0){
 		for(var k=0;k<hormigas2[i][j].length;k++){
+			hormigas[i][j].splice(0, 1);
+			direccion[i][j].splice(0, 1);
 			//Blanco
 			if(estado==1){
+				if(k==0){
+					numero_negros++;
+				}
 				array[i][j]=0;
-				numero_negros++;
-				ctx.fillStyle="#000000";//Negro
-				ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
-				ctx.stroke();
+				if(hormigas[i][j].length<1){
+					//ctx.clearRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
+					ctx.fillStyle="#000000";//Negro
+					ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
+					ctx.stroke();
+				}
 				if(direccion2[i][j][k]==0){
 					if(j==0){
 						hormigas[i][tam-1].push(1);
 						direccion[i][tam-1].push(3);
+						//ctx.clearRect(0+((tam-1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((tam-1)*(escala)),0+(i*(escala)),escala,escala);
 					}else{
 						hormigas[i][j-1].push(1);
 						direccion[i][j-1].push(3);
+						//ctx.clearRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
 					}
@@ -77,11 +85,13 @@ function evaluar(i,j){
 					if(i==0){
 						hormigas[tam-1][j].push(1);
 						direccion[tam-1][j].push(0);
+						//ctx.clearRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 					}else{
 						hormigas[i-1][j].push(1);
 						direccion[i-1][j].push(0);
+						//ctx.clearRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 					}
@@ -90,11 +100,13 @@ function evaluar(i,j){
 					if(j==tam-1){
 						hormigas[i][0].push(1);
 						direccion[i][0].push(1);
+						//ctx.clearRect(0+((0)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((0)*(escala)),0+((i)*(escala)),escala,escala);
 					}else{
 						hormigas[i][j+1].push(1);
 						direccion[i][j+1].push(1);
+						//ctx.clearRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
 					}
@@ -103,31 +115,40 @@ function evaluar(i,j){
 					if(i==tam-1){
 						hormigas[0][j].push(1);
 						direccion[0][j].push(2);
+						//ctx.clearRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 					}else{
 						hormigas[i+1][j].push(1);
 						direccion[i+1][j].push(2);
+						//ctx.clearRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 					}
 					ctx.stroke();
 				}
 			}else{//Negro
+				if(k==0){
+					numero_negros--;
+				}
 				array[i][j]=1;
-				numero_negros--;
-				ctx.fillStyle="#ffffff";//Blanco
-				ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
-				ctx.stroke();
+				if(hormigas[i][j].length<1){
+					//ctx.clearRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
+					ctx.fillStyle="#ffffff";//Blanco
+					ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
+					ctx.stroke();
+				}
 				if(direccion2[i][j][k]==0){
 					if(j==tam-1){
 						hormigas[i][0].push(1);
 						direccion[i][0].push(1);
+						//ctx.clearRect(0+((0)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((0)*(escala)),0+(i*(escala)),escala,escala);
 					}else{
 						hormigas[i][j+1].push(1);
 						direccion[i][j+1].push(1);
+						//ctx.clearRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
 					}
@@ -136,11 +157,13 @@ function evaluar(i,j){
 					if(i==tam-1){
 						hormigas[0][j].push(1);
 						direccion[0][j].push(2);
+						//ctx.clearRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 					}else{
 						hormigas[i+1][j].push(1);
 						direccion[i+1][j].push(2);
+						//ctx.clearRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 					}
@@ -149,11 +172,13 @@ function evaluar(i,j){
 					if(j==0){
 						hormigas[i][tam-1].push(1);
 						direccion[i][tam-1].push(3);
+						//ctx.clearRect(0+((tam-1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((tam-1)*(escala)),0+((i)*(escala)),escala,escala);
 					}else{
 						hormigas[i][j-1].push(1);
 						direccion[i][j-1].push(3);
+						//ctx.clearRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
 					}
@@ -162,11 +187,13 @@ function evaluar(i,j){
 					if(i==0){
 						hormigas[tam-1][j].push(1);
 						direccion[tam-1][j].push(0);
+						//ctx.clearRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 					}else{
 						hormigas[i-1][j].push(1);
 						direccion[i-1][j].push(0);
+						//ctx.clearRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 						ctx.fillStyle="#ff0000";//Rojo
 						ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 					}
@@ -174,8 +201,8 @@ function evaluar(i,j){
 				}
 			}
 		}
-		hormigas[i][j]=[];
-		direccion[i][j]=[];
+		// hormigas[i][j]=[];
+		// direccion[i][j]=[];
 	}
 }
 
@@ -270,6 +297,7 @@ function clickCanvas(event){
 			if(x >= arr[0] && x <= arr[2] && y >= arr[1] && y <= arr[3]){
 				console.log("Soy:"+i+","+j);
 				random=Math.floor((Math.random() * 4) + 0);
+				// random=3;
 				// console.log(random);
 				numero_hormigas++;
 				numero_negros--;
