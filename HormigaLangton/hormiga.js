@@ -19,6 +19,7 @@ var hormigas;
 var hormigas2;
 var direccion;
 var direccion2;
+var hormigaBefore;
 //Direcciones:
 //0->norte, 1->este, 2->sur, 3->oeste
 
@@ -48,6 +49,7 @@ hormigas2=Create2DArray(tam);
 coordenadas=Create2DArray(tam);
 direccion=Create2DArray(tam);
 direccion2=Create2DArray(tam);
+hormigaBefore=Create2DArray(tam);
 
 function evaluar(i,j){
 	var estado=array2[i][j];
@@ -62,31 +64,57 @@ function evaluar(i,j){
 			ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 			ctx.stroke();
 			if(direccion2[i][j]==0){
-				hormigas[i][j-1]=1;
-				direccion[i][j-1]=3;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
+				if(j==0){
+					hormigas[i][tam-1]=1;
+					direccion[i][tam-1]=3;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((tam-1)*(escala)),0+(i*(escala)),escala,escala);
+				}else{
+					hormigas[i][j-1]=1;
+					direccion[i][j-1]=3;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==1){
-				hormigas[i-1][j]=1;
-				direccion[i-1][j]=0;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
+				if(i==0){
+					hormigas[tam-1][j]=1;
+					direccion[tam-1][j]=0;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
+				}else{
+					hormigas[i-1][j]=1;
+					direccion[i-1][j]=0;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==2){
-				hormigas[i][j+1]=1;
-				direccion[i][j+1]=1;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
+				if(j==tam-1){
+					hormigas[i][0]=1;
+					direccion[i][0]=1;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((0)*(escala)),0+((i)*(escala)),escala,escala);
+				}else{
+					hormigas[i][j+1]=1;
+					direccion[i][j+1]=1;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==3){
-				hormigas[i+1][j]=1;
-				direccion[i+1][j]=2;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
+				if(i==tam-1){
+					hormigas[0][j]=1;
+					direccion[0][j]=2;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
+				}else{
+					hormigas[i+1][j]=1;
+					direccion[i+1][j]=2;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
+				}
 				ctx.stroke();
-			}else{
-				console.log("No soy nadie");
 			}
 		}else{//Negro
 			array[i][j]=1;
@@ -95,31 +123,57 @@ function evaluar(i,j){
 			ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 			ctx.stroke();
 			if(direccion2[i][j]==0){
-				hormigas[i][j+1]=1;
-				direccion[i][j+1]=1;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
+				if(j==tam-1){
+					hormigas[i][0]=1;
+					direccion[i][0]=1;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((0)*(escala)),0+(i*(escala)),escala,escala);
+				}else{
+					hormigas[i][j+1]=1;
+					direccion[i][j+1]=1;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==1){
-				hormigas[i+1][j]=1;
-				direccion[i+1][j]=2;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
+				if(i==tam-1){
+					hormigas[0][j]=1;
+					direccion[0][j]=2;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
+				}else{
+					hormigas[i+1][j]=1;
+					direccion[i+1][j]=2;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==2){
-				hormigas[i][j-1]=1;
-				direccion[i][j-1]=3;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
+				if(j==0){
+					hormigas[i][tam-1]=1;
+					direccion[i][tam-1]=3;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((tam-1)*(escala)),0+((i)*(escala)),escala,escala);
+				}else{
+					hormigas[i][j-1]=1;
+					direccion[i][j-1]=3;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
+				}
 				ctx.stroke();
 			}else if(direccion2[i][j]==3){
-				hormigas[i-1][j]=1;
-				direccion[i-1][j]=0;
-				ctx.fillStyle="#ff0000";//Rojo
-				ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
+				if(i==0){
+					hormigas[tam-1][j]=1;
+					direccion[tam-1][j]=0;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
+				}else{
+					hormigas[i-1][j]=1;
+					direccion[i-1][j]=0;
+					ctx.fillStyle="#ff0000";//Rojo
+					ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
+				}
 				ctx.stroke();
-			}else{
-				console.log("No soy nadie");
 			}
 		}
 	}
