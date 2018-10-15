@@ -57,6 +57,7 @@ function evaluar(i,j){
 		//Blanco
 		if(estado==1){
 			array[i][j]=0;
+			numero_negros++;
 			ctx.fillStyle="#000000";//Negro
 			ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 			ctx.stroke();
@@ -89,6 +90,7 @@ function evaluar(i,j){
 			}
 		}else{//Negro
 			array[i][j]=1;
+			numero_negros--;
 			ctx.fillStyle="#ffffff";//Blanco
 			ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 			ctx.stroke();
@@ -183,7 +185,7 @@ function ejecutar(){
 }
 
 function continuar(){
-	intervalo=setInterval(ejecutar, 100);
+	intervalo=setInterval(ejecutar, 10);
 }
 
 function pausa(){
@@ -209,6 +211,8 @@ function clickCanvas(event){
 				console.log("Soy:"+i+","+j);
 				random=Math.floor((Math.random() * 4) + 0);
 				// console.log(random);
+				numero_hormigas++;
+				numero_negros--;
 				hormigas[i][j]=1;
 				hormigas2[i][j]=1;
 				direccion[i][j]=random;
