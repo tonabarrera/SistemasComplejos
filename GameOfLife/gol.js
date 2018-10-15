@@ -176,7 +176,6 @@ for (var i = 0; i < tam; i++) {
 		ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 		ctx.stroke();
 	}
-	// console.log("Ya hice: "+i);
 }
 
 console.log(numero_vivos+","+generacion);
