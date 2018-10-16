@@ -1,7 +1,7 @@
 var c=document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
 var longitud=680;
-var tam=10;
+var tam=30;
 var escala=longitud/tam;
 var random;
 var generacion=0;
@@ -19,6 +19,7 @@ var hormigas;
 var hormigas2;
 var direccion;
 var direccion2;
+var matar;
 var color_negro='#000000';
 var color_blanco='#ffffff';
 var color_norte='#ff0000';
@@ -54,6 +55,7 @@ hormigas2=Create2DArray(tam);
 coordenadas=Create2DArray(tam);
 direccion=Create2DArray(tam);
 direccion2=Create2DArray(tam);
+matar=Create2DArray(tam);
 
 function evaluar(i,j){
 	var estado=array2[i][j];
@@ -68,7 +70,8 @@ function evaluar(i,j){
 				}
 				array[i][j]=0;
 				if(hormigas[i][j].length<1){
-					ctx.fillStyle="#000000";//Negro
+					ctx.clearRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
+					ctx.fillStyle=color_negro;//Negro
 					ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 					ctx.stroke();
 				}
@@ -76,11 +79,13 @@ function evaluar(i,j){
 					if(j==0){
 						hormigas[i][tam-1].push(1);
 						direccion[i][tam-1].push(3);
+						ctx.clearRect(0+((tam-1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle=color_oeste;
 						ctx.fillRect(0+((tam-1)*(escala)),0+(i*(escala)),escala,escala);
 					}else{
 						hormigas[i][j-1].push(1);
 						direccion[i][j-1].push(3);
+						ctx.clearRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle=color_oeste;
 						ctx.fillRect(0+((j-1)*(escala)),0+(i*(escala)),escala,escala);
 					}
@@ -89,12 +94,13 @@ function evaluar(i,j){
 					if(i==0){
 						hormigas[tam-1][j].push(1);
 						direccion[tam-1][j].push(0);
+						ctx.clearRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 						ctx.fillStyle=color_norte;
 						ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 					}else{
 						hormigas[i-1][j].push(1);
 						direccion[i-1][j].push(0);
-						//ctx.clearRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
+						ctx.clearRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 						ctx.fillStyle=color_norte;
 						ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 					}
@@ -103,11 +109,13 @@ function evaluar(i,j){
 					if(j==tam-1){
 						hormigas[i][0].push(1);
 						direccion[i][0].push(1);
+						ctx.clearRect(0+((0)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle=color_este;
 						ctx.fillRect(0+((0)*(escala)),0+((i)*(escala)),escala,escala);
 					}else{
 						hormigas[i][j+1].push(1);
 						direccion[i][j+1].push(1);
+						ctx.clearRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle=color_este;
 						ctx.fillRect(0+((j+1)*(escala)),0+((i)*(escala)),escala,escala);
 					}
@@ -116,11 +124,13 @@ function evaluar(i,j){
 					if(i==tam-1){
 						hormigas[0][j].push(1);
 						direccion[0][j].push(2);
+						ctx.clearRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 						ctx.fillStyle=color_sur;
 						ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 					}else{
 						hormigas[i+1][j].push(1);
 						direccion[i+1][j].push(2);
+						ctx.clearRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 						ctx.fillStyle=color_sur;
 						ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 					}
@@ -132,6 +142,7 @@ function evaluar(i,j){
 				}
 				array[i][j]=1;
 				if(hormigas[i][j].length<1){
+					ctx.clearRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 					ctx.fillStyle=color_blanco;//Blanco
 					ctx.fillRect(0+(j*(escala)),0+(i*(escala)),escala,escala);
 					ctx.stroke();
@@ -140,11 +151,13 @@ function evaluar(i,j){
 					if(j==tam-1){
 						hormigas[i][0].push(1);
 						direccion[i][0].push(1);
+						ctx.clearRect(0+((0)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle=color_este;
 						ctx.fillRect(0+((0)*(escala)),0+(i*(escala)),escala,escala);
 					}else{
 						hormigas[i][j+1].push(1);
 						direccion[i][j+1].push(1);
+						ctx.clearRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
 						ctx.fillStyle=color_este;
 						ctx.fillRect(0+((j+1)*(escala)),0+(i*(escala)),escala,escala);
 					}
@@ -153,11 +166,13 @@ function evaluar(i,j){
 					if(i==tam-1){
 						hormigas[0][j].push(1);
 						direccion[0][j].push(2);
+						ctx.clearRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 						ctx.fillStyle=color_sur;
 						ctx.fillRect(0+((j)*(escala)),0+((0)*(escala)),escala,escala);
 					}else{
 						hormigas[i+1][j].push(1);
 						direccion[i+1][j].push(2);
+						ctx.clearRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 						ctx.fillStyle=color_sur;
 						ctx.fillRect(0+((j)*(escala)),0+((i+1)*(escala)),escala,escala);
 					}
@@ -166,11 +181,13 @@ function evaluar(i,j){
 					if(j==0){
 						hormigas[i][tam-1].push(1);
 						direccion[i][tam-1].push(3);
+						ctx.clearRect(0+((tam-1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle=color_oeste;
 						ctx.fillRect(0+((tam-1)*(escala)),0+((i)*(escala)),escala,escala);
 					}else{
 						hormigas[i][j-1].push(1);
 						direccion[i][j-1].push(3);
+						ctx.clearRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
 						ctx.fillStyle=color_oeste;
 						ctx.fillRect(0+((j-1)*(escala)),0+((i)*(escala)),escala,escala);
 					}
@@ -179,11 +196,13 @@ function evaluar(i,j){
 					if(i==0){
 						hormigas[tam-1][j].push(1);
 						direccion[tam-1][j].push(0);
+						ctx.clearRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 						ctx.fillStyle=color_norte;
 						ctx.fillRect(0+((j)*(escala)),0+((tam-1)*(escala)),escala,escala);
 					}else{
 						hormigas[i-1][j].push(1);
 						direccion[i-1][j].push(0);
+						ctx.clearRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 						ctx.fillStyle=color_norte;
 						ctx.fillRect(0+((j)*(escala)),0+((i-1)*(escala)),escala,escala);
 					}
@@ -295,6 +314,7 @@ function clickCanvas(event){
 					hormigas2[i][j].push(1);
 					direccion[i][j].push(random);
 					direccion2[i][j].push(random);
+					matar[i][j]=0;
 					if(random==0){
 						//Norte -> Rojo
 						ctx.fillStyle=color_norte;
@@ -310,22 +330,33 @@ function clickCanvas(event){
 						ctx.fillStyle=color_oeste;
 					}
 				}else{
-					if(direccion[i][j][0]==0){
+					if(matar[i][j]==4){
+						hormigas[i][j].pop();
+						hormigas2[i][j].pop();
+						direccion[i][j].pop();
+						direccion2[i][j].pop();
+						ctx.fillStyle=color_negro;
+						matar[i][j]=0;
+					}else if(direccion[i][j][0]==0){
 						direccion[i][j][0]=1;
 						direccion2[i][j][0]=1;
 						ctx.fillStyle=color_este;
+						matar[i][j]++;
 					}else if(direccion[i][j][0]==1){
 						direccion[i][j][0]=2;
 						direccion2[i][j][0]=2;
 						ctx.fillStyle=color_sur;
+						matar[i][j]++;
 					}else if(direccion[i][j][0]==2){
 						direccion[i][j][0]=3;
 						direccion2[i][j][0]=3;
 						ctx.fillStyle=color_oeste;
+						matar[i][j]++;
 					}else if(direccion[i][j][0]==3){
 						direccion[i][j][0]=0;
 						direccion2[i][j][0]=0;
 						ctx.fillStyle=color_norte;
+						matar[i][j]++;
 					}
 				}
 				ctx.fillRect(x,y,escala,escala);
