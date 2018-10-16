@@ -1,7 +1,7 @@
 var c=document.getElementById("myCanvas");
 var ctx=c.getContext("2d");
 var longitud=680;
-var tam=100;
+var tam=10;
 var escala=longitud/tam;
 var random;
 var generacion=0;
@@ -283,22 +283,22 @@ function clickCanvas(event){
 		for(var j=0;j<tam;j++){
 			var arr=obtenerCoordenadas(i,j);
 			if(x >= arr[0] && x <= arr[2] && y >= arr[1] && y <= arr[3]){
+				x=0+j*escala;
+				y=0+i*escala;
 				if(hormigas2[i][j].length<1){
 					console.log("Soy:"+i+","+j);
 					random=Math.floor((Math.random() * 4) + 0);
 					// random=3;
-					// console.log(random);
 					numero_hormigas++;
 					numero_negros--;
 					hormigas[i][j].push(1);
 					hormigas2[i][j].push(1);
 					direccion[i][j].push(random);
 					direccion2[i][j].push(random);
-					x=0+j*escala;
-					y=0+i*escala;
 					if(random==0){
 						//Norte -> Rojo
 						ctx.fillStyle=color_norte;
+						
 					}else if(random==1){
 						//Este -> Amarillo
 						ctx.fillStyle=color_este;
@@ -309,13 +309,28 @@ function clickCanvas(event){
 						//Oeste -> Verde
 						ctx.fillStyle=color_oeste;
 					}
-					ctx.fillRect(x,y,escala,escala);
-					ctx.stroke();
-					break;
 				}else{
-
+					if(direccion[i][j][0]==0){
+						direccion[i][j][0]=1;
+						direccion2[i][j][0]=1;
+						ctx.fillStyle=color_este;
+					}else if(direccion[i][j][0]==1){
+						direccion[i][j][0]=2;
+						direccion2[i][j][0]=2;
+						ctx.fillStyle=color_sur;
+					}else if(direccion[i][j][0]==2){
+						direccion[i][j][0]=3;
+						direccion2[i][j][0]=3;
+						ctx.fillStyle=color_oeste;
+					}else if(direccion[i][j][0]==3){
+						direccion[i][j][0]=0;
+						direccion2[i][j][0]=0;
+						ctx.fillStyle=color_norte;
+					}
 				}
-				
+				ctx.fillRect(x,y,escala,escala);
+				ctx.stroke();
+				break;
 			}
 		}
 	}
